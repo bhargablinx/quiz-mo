@@ -18,6 +18,7 @@ function checkAnswer(obj, answer) {
     if (correctAns === userAns) {
         console.log('Correct!');
         userScore++;
+        document.querySelector('.score').textContent = userScore;
     } else {
         console.log('Incorrect!');
 
@@ -35,7 +36,7 @@ function app() {
     allQuestions.push(q4);
     const q5 = addQuestion('The skeletal framework of which animal has been used in household chores for centuries but has now been largely replaced by human-made substitutes?', ['jellyfish', 'sponge', 'clam', 'barracuda'], 2);
     allQuestions.push(q5);
-    const q6 = addQuestion('Solve: 3 + 965', ['999', '969', '968', '964'], 3);
+    const q6 = addQuestion('Solve: 3 + 965', ['999', '969', '968', '964'], 2);
     allQuestions.push(q6);
 }
 
@@ -112,6 +113,8 @@ function DOM() {
 app();
 DOM();
 
+document.querySelector('.total-qna').textContent = allQuestions.length;
+
 function checkingUsrResponse() {
     document.querySelectorAll('.sub-btn').forEach((item) => {
         item.addEventListener('click', () => {
@@ -125,7 +128,7 @@ function checkingUsrResponse() {
                     checkAnswer(allQuestions[questionID], usrAns)
                 }
             })
-            // console.log('clicked', options);
+            item.disabled = true;
         })
     })
 }

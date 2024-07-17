@@ -58,14 +58,51 @@ header p {
 .container-col {
     margin-top: 25px;
     margin-right: 10px;
-    /* border: 2px solid var(--sky-shadow); */
     box-shadow: 0 2px 4px 0 rgba(14, 165, 233, 0.1), 0 3px 10px 0 rgba(14, 165, 233, 0.19);
     height: 85vh;
+    flex-wrap: nowrap;
 }
+
+/* RIGHT SIDE BAR */
 
 .col-1 {
     flex: 4;
+    padding: 25px;
 }
+
+.card {
+    height: 100px;
+    padding: 25px;
+    border: 1px solid var(--sky-light);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.question {
+    font-size: 1.4rem;
+}
+
+.sub-btn {
+    cursor: pointer;
+    background-color: var(--sky-light);
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+
+.sub-btn:hover {
+    background-color: var(--sky-dark);
+}
+
+.options label {
+    margin-right: 25px;
+}
+
+
+/* LEFT SIDE BAR */
 
 .col-2 {
     padding: 50px 0;

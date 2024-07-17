@@ -13,7 +13,8 @@ function addQuestion(question, options, correctOpt) {
 
 function checkAnswer(obj, answer) {
     const correctAns = obj.options[obj.correctOpt];
-    const userAns = obj.options[answer];
+    // const userAns = obj.options[answer];
+    const userAns = answer;
     if (correctAns === userAns) {
         console.log('Correct!');
         userScore++;
@@ -108,6 +109,25 @@ function DOM() {
     }
 }
 
-
 app();
 DOM();
+
+function checkingUsrResponse() {
+    document.querySelectorAll('.sub-btn').forEach((item) => {
+        item.addEventListener('click', () => {
+            const allChild = item.parentNode.childNodes;
+            const options = allChild[1].childNodes;
+            options.forEach((elements) => {
+                if (elements.type == 'radio' && elements.checked) {
+                    const label = document.querySelector(`label[for='${elements.id}']`);
+                    const usrAns = label.textContent;
+                    const questionID = parseInt(elements.name.slice(-1));
+                    checkAnswer(allQuestions[questionID], usrAns)
+                }
+            })
+            // console.log('clicked', options);
+        })
+    })
+}
+
+checkingUsrResponse();

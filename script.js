@@ -58,10 +58,19 @@ function app() {
             }
             tmp++;
         })
+        if (yourOptions.length < 4) {
+            console.log('added 4 option');
+            return;
+        } 
         const q = new addQuestion(question, yourOptions, correctAns);
         allQuestions.push(q);
-        createCard(q, allQuestions.length)
+        localStorage.setItem('0', JSON.stringify(allQuestions));
+        document.querySelector('.total-qna').textContent = allQuestions.length;
+        // createCard(q, allQuestions.length)
+        document.location.reload();
     });
+
+    document.querySelector('.total-qna').textContent = allQuestions.length;
 }
 
 function createCard(obj, qNum) {
@@ -136,8 +145,6 @@ function DOM() {
 
 app();
 DOM();
-
-document.querySelector('.total-qna').textContent = allQuestions.length;
 
 function checkingUsrResponse() {
     document.querySelectorAll('.sub-btn').forEach((item) => {

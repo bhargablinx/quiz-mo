@@ -1,0 +1,49 @@
+:root {
+    box-sizing: border-box;
+    --sky-light: #bae6fd;
+    --sky-dark: #0ea5e9;
+    --font: #0c0a09;
+    font-family: sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    color: var(--font);
+}
+
+a {
+    text-decoration: none;
+    color: var(--font);
+}
+
+/* HEADER */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20vw;
+    height: 50px;
+    background-color: var(--sky-light);
+    border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+}
+
+.title {
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: bolder;
+}
+
+.icons i {
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin: 0 10px;
+}
+
+header p {
+    font-size: 0.8rem;
+    font-weight: lighter;
+}
+
+/* QUIZ APP LAYOUT (HERO) */

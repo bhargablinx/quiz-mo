@@ -1,5 +1,5 @@
 let userScore = 0;
-const allQuestions = [];
+let allQuestions = [];
 
 function createQuestion(question, options, correctOpt) {
     this.question = question;
@@ -28,18 +28,23 @@ function checkAnswer(obj, answer, btn) {
 }
 
 function app() {
-    const q1 = addQuestion('What is the full form of JS', ['Java', 'JavaScript', 'C', 'C++'], 1);
-    allQuestions.push(q1);
-    const q2 = addQuestion('What is the full form of C', ['Java', 'JavaScript', 'Python', 'None'], 3);
-    allQuestions.push(q2);
-    const q3 = addQuestion('Inside which HTML element do we put the JavaScript?', ['<scripting>', '<js>', '<script>', '<javascript>'], 2);
-    allQuestions.push(q3);
-    const q4 = addQuestion('What is the basic unit of measurement for volume in the metric system?', ['kilogram', 'ounce', 'metre', 'litre'], 3);
-    allQuestions.push(q4);
-    const q5 = addQuestion('The skeletal framework of which animal has been used in household chores for centuries but has now been largely replaced by human-made substitutes?', ['jellyfish', 'sponge', 'clam', 'barracuda'], 2);
-    allQuestions.push(q5);
-    const q6 = addQuestion('Solve: 3 + 965', ['999', '969', '968', '964'], 2);
-    allQuestions.push(q6);
+    allQuestions = JSON.parse(localStorage.getItem(0))
+
+    // PRELOADS THE QUESTIONS
+    if (allQuestions.length === 0) {
+        const q1 = addQuestion('What is the full form of JS', ['Java', 'JavaScript', 'C', 'C++'], 1);
+        allQuestions.push(q1);
+        const q2 = addQuestion('What is the full form of C', ['Java', 'JavaScript', 'Python', 'None'], 3);
+        allQuestions.push(q2);
+        const q3 = addQuestion('Inside which HTML element do we put the JavaScript?', ['<scripting>', '<js>', '<script>', '<javascript>'], 2);
+        allQuestions.push(q3);
+        const q4 = addQuestion('What is the basic unit of measurement for volume in the metric system?', ['kilogram', 'ounce', 'metre', 'litre'], 3);
+        allQuestions.push(q4);
+        const q5 = addQuestion('The skeletal framework of which animal has been used in household chores for centuries but has now been largely replaced by human-made substitutes?', ['jellyfish', 'sponge', 'clam', 'barracuda'], 2);
+        allQuestions.push(q5);
+        const q6 = addQuestion('Solve: 3 + 965', ['999', '969', '968', '964'], 2);
+        allQuestions.push(q6);
+    }
 
     document.querySelector('#addQuestions').addEventListener('click', () => {
         const question = prompt('Enter your question: ')

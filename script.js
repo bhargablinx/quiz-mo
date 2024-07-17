@@ -11,7 +11,7 @@ function addQuestion(question, options, correctOpt) {
     return new createQuestion(question, options, correctOpt);
 }
 
-function checkAnswer(obj, answer) {
+function checkAnswer(obj, answer, btn) {
     const correctAns = obj.options[obj.correctOpt];
     // const userAns = obj.options[answer];
     const userAns = answer;
@@ -19,9 +19,12 @@ function checkAnswer(obj, answer) {
         console.log('Correct!');
         userScore++;
         document.querySelector('.score').textContent = userScore;
+        btn.style.backgroundColor = 'green';
+        btn.style.color = 'white';
     } else {
         console.log('Incorrect!');
-
+        btn.style.color = 'white';
+        btn.style.backgroundColor = 'red';
     }
 }
 
@@ -125,10 +128,10 @@ function checkingUsrResponse() {
                     const label = document.querySelector(`label[for='${elements.id}']`);
                     const usrAns = label.textContent;
                     const questionID = parseInt(elements.name.slice(-1));
-                    checkAnswer(allQuestions[questionID], usrAns)
+                    checkAnswer(allQuestions[questionID], usrAns, item)
+                    item.disabled = true;
                 }
             })
-            item.disabled = true;
         })
     })
 }

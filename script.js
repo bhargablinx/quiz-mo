@@ -13,7 +13,6 @@ function addQuestion(question, options, correctOpt) {
 
 function checkAnswer(obj, answer, btn) {
     const correctAns = obj.options[obj.correctOpt];
-    // const userAns = obj.options[answer];
     const userAns = answer;
     if (correctAns === userAns) {
         console.log('Correct!');
@@ -41,6 +40,23 @@ function app() {
     allQuestions.push(q5);
     const q6 = addQuestion('Solve: 3 + 965', ['999', '969', '968', '964'], 2);
     allQuestions.push(q6);
+
+    document.querySelector('#addQuestions').addEventListener('click', () => {
+        const question = prompt('Enter your question: ')
+        let yourOptions = prompt('Enter your options: ')
+        yourOptions = yourOptions.split(',').map(option => option.trim());
+        let correctAns = prompt('Which is the correct option?');
+        let tmp = 0;
+        yourOptions.forEach((item) => {
+            if (item == correctAns) {
+                correctAns = tmp;
+            }
+            tmp++;
+        })
+        const q = new addQuestion(question, yourOptions, correctAns);
+        allQuestions.push(q);
+        createCard(q, allQuestions.length)
+    });
 }
 
 function createCard(obj, qNum) {
@@ -88,7 +104,7 @@ function createCard(obj, qNum) {
 
     const subBtn = document.createElement('button');
     subBtn.className = 'sub-btn';
-    subBtn.textContent = 'Submit';
+    subBtn.textContent = 'Check';
 
     cardDiv.appendChild(quesDiv);
     optionsDiv.appendChild(input1);
@@ -137,3 +153,7 @@ function checkingUsrResponse() {
 }
 
 checkingUsrResponse();
+
+window.addEventListener('beforeunload', () => {
+    localStorage.setItem('0', JSON.stringify(allQuestions))
+});

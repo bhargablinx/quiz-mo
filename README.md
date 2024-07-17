@@ -1,2 +1,2 @@
-# quiz-mo
-An Open Source  Quiz Platform
+# Quiz Mo
+Quiz Mo is an open source  quiz platform for teachers.

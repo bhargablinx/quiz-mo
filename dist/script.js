@@ -64,9 +64,11 @@ function showQnaInDOM(qNum) {
 }
 
 document.querySelector(".next-btn").addEventListener("click", () => {
-  if (currentQnaNum < allQuestions.length) currentQnaNum++;
-  if (currentQnaNum == allQuestions.length) {
-    document.querySelector(".next-btn").textContent = "Submit";
+  if (allQuestions[currentQnaNum - 1].userInput != null) {
+    if (currentQnaNum < allQuestions.length) currentQnaNum++;
+    if (currentQnaNum == allQuestions.length) {
+      document.querySelector(".next-btn").textContent = "Submit";
+    }
+    showQnaInDOM(currentQnaNum);
   }
-  showQnaInDOM(currentQnaNum);
 });

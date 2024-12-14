@@ -16,8 +16,10 @@ class Questions {
     if (this.userInput == this.correctOpt) {
       score += 1;
       console.log(`Correct! Updated score is ${score}`);
+      return true;
     } else {
       console.log(`Incorrect! Score is ${score}`);
+      return false;
     }
   }
 }
@@ -62,6 +64,25 @@ function showQnaInDOM(qNum) {
     tmp++;
   });
 }
+
+function chnageColor(element, status) {
+  if (status) {
+    element.style.backgroundColor = "lightgreen";
+  } else {
+    element.style.backgroundColor = "#ff7f7f";
+  }
+}
+
+document.querySelectorAll(".opt").forEach((item) => {
+  item.addEventListener("click", () => {
+    let currentQuestion = allQuestions[currentQnaNum - 1];
+    // Disabled multiple answer clicking
+    if (currentQuestion.userInput == null) {
+      currentQuestion.userInput = item.innerText;
+      chnageColor(item, currentQuestion.checkCorrectOpt());
+    }
+  });
+});
 
 document.querySelector(".next-btn").addEventListener("click", () => {
   if (allQuestions[currentQnaNum - 1].userInput != null) {

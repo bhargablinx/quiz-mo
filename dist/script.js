@@ -35,7 +35,7 @@ class Questions {
 
   let q2 = new Questions(
     "What does NaN stand for in JavaScript?",
-    ["Not a Number", "Not a Number", "Not a Number", "Not a Number"],
+    ["Not a Number", "Not a November", "No Number", "None of the above"],
     "Not a Number"
   );
   allQuestions.push(q2);
@@ -73,6 +73,12 @@ function chnageColor(element, status) {
   }
 }
 
+function resetColor() {
+  document.querySelectorAll(".opt").forEach((item) => {
+    item.style.backgroundColor = "#e2e8f0"; // slate-200
+  });
+}
+
 document.querySelectorAll(".opt").forEach((item) => {
   item.addEventListener("click", () => {
     let currentQuestion = allQuestions[currentQnaNum - 1];
@@ -85,10 +91,17 @@ document.querySelectorAll(".opt").forEach((item) => {
 });
 
 document.querySelector(".next-btn").addEventListener("click", () => {
+  if (currentQnaNum < allQuestions.length) resetColor();
   if (allQuestions[currentQnaNum - 1].userInput != null) {
     if (currentQnaNum < allQuestions.length) currentQnaNum++;
     if (currentQnaNum == allQuestions.length) {
       document.querySelector(".next-btn").textContent = "Submit";
+      document.querySelector(".next-btn").classList.add("subBtn");
+      document.querySelector(".subBtn").addEventListener("click", () => {
+        const card = document.querySelector(".card");
+        card.innerHTML = "";
+        card.textContent = `Final Score is: ${score}`;
+      });
     }
     showQnaInDOM(currentQnaNum);
   }
